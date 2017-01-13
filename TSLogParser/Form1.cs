@@ -103,10 +103,17 @@ namespace TSLogParser
                 {
                     if (child.ForeColor == Color.Red)
                     {
-                        node = child;
-                        treeView.SelectedNode = child;
-                        child.Expand();
-                        done = false;
+                        if (child.Nodes.Count > 0)
+                        {
+                            node = child;
+                            child.Expand();
+                            done = false;
+                        } else
+                        {
+
+                            treeView.SelectedNode = child;
+                            done = true;
+                        }
                     }
                 }
             }
