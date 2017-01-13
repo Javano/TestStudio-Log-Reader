@@ -1,0 +1,17 @@
+C:\inetpub\itracks.wp 2016\Development\TSLogParser\TSLogParser\bin\Debug\TSLogParser.exe.config
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\bin\Debug\TSLogParser.exe.config
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\bin\Debug\TSLogParser.exe
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\bin\Debug\TSLogParser.pdb
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\obj\Debug\TSLogParser.csprojResolveAssemblyReference.cache
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\obj\Debug\TSLogParser.Properties.Resources.resources
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\obj\Debug\TSLogParser.csproj.GenerateResource.Cache
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\obj\Debug\TSLogParser.exe
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\obj\Debug\TSLogParser.pdb
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\obj\Debug\TSLogParser.Form1.resources
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\obj\Debug\TSLogParser.Form2.resources
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\bin\Debug\log.txt
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\bin\Debug\icons\bullet.ico
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\bin\Debug\icons\checkmark.ico
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\bin\Debug\icons\exclamation.ico
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\bin\Debug\icons\x.ico
+C:\Users\adam.carruthers\Google Drive\Projects\C#\TSLogParser\TSLogParser\bin\Debug\icons\skipped.ico
