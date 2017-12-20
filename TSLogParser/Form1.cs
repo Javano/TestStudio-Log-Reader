@@ -22,11 +22,11 @@ namespace TSLogParser
             InitializeComponent();
             this.AllowTransparency = true;
             imageList.ColorDepth = ColorDepth.Depth32Bit;
-            imageList.Images.Add(new Icon("icons/bullet.ico"));
-            imageList.Images.Add(new Icon("icons/checkmark.ico"));
-            imageList.Images.Add(new Icon("icons/exclamation.ico"));
-            imageList.Images.Add(new Icon("icons/x.ico"));
-            imageList.Images.Add(new Icon("icons/skipped.ico"));
+            imageList.Images.Add(Properties.Resources.bullet);
+            imageList.Images.Add(Properties.Resources.checkmark);
+            imageList.Images.Add(Properties.Resources.exclamation);
+            imageList.Images.Add(Properties.Resources.x);
+            imageList.Images.Add(Properties.Resources.skipped);
             treeView.ImageList = imageList;
             treeView.Nodes.Add(mainTest);
             if (canLoadFromClipboard())
@@ -99,22 +99,32 @@ namespace TSLogParser
             while (!done)
             {
                 done = true;
+                TreeNode lastErrorNode = null;
                 foreach(TreeNode child in node.Nodes)
                 {
+
                     if (child.ForeColor == Color.Red)
                     {
-                        if (child.Nodes.Count > 0)
-                        {
-                            node = child;
-                            child.Expand();
-                            done = false;
-                        } else
-                        {
-
-                            treeView.SelectedNode = child;
-                            done = true;
-                        }
+                        lastErrorNode = child;
                     }
+                }
+                if (lastErrorNode != null)
+                {
+                    if (lastErrorNode.Nodes.Count > 0)
+                    {
+                        node = lastErrorNode;
+                        lastErrorNode.Expand();
+                        done = false;
+                        lastErrorNode = null;
+                    }
+                    else
+                    {
+                        treeView.SelectedNode = lastErrorNode;
+                        done = true;
+                    }
+                } else
+                {
+                    done = true;
                 }
             }
         }

@@ -38,12 +38,26 @@ namespace TSLogParser
                 result = value;
             }
         }
-        private string stepPattern = @"^'(\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2} (?:AM|PM))' - '(Pass|Fail|NotRun)' : (\d+\.) ([\s\S]+)$";
+        private string stepPattern = @"'(\d+.\d+.\d+ \d+.\d+.\d+ (?:AM|PM))' - '(Pass|Fail|NotRun)' : (\d+)\. ([^\n\r]+)\r";
 
-        public Test(string name, Test parentRef) : base(name)
+        public Test(string number, string name, Test parentRef) : base(number + ". " + name)
         {
+            if(number != null)
+            {
+                name = name + ". " + number;
+            }
+            if (parentRef != null && !parentRef.ToolTipText.Equals("Log") && number != null)
+            {
+                this.ToolTipText = parentRef.ToolTipText + " -> " + number;
+            } else if (number != null)
+            {
+                this.ToolTipText = number;
+            } else
+            {
+                this.ToolTipText = name;
+            }
             this.name = name;
-           // this.result = (result.Equals("Pass"));
+            // this.result = (result.Equals("Pass"));
             this.parentRef = parentRef;
           /*  foreach (string line in steps.Split('\n'))
             {
@@ -51,7 +65,9 @@ namespace TSLogParser
             }*/
         }
 
-        public Test(string name) : this(name, null) { }
+        public Test(string number, string name) : this(number, name, null) { }
+
+        public Test(string name) : this(null, name, null) { }
 
         public void parse(List<string> logLines)
         {
@@ -74,7 +90,7 @@ namespace TSLogParser
                 }
                 else if (line.Contains("InnerException:"))
                 {
-                    newTest = new Test("Exception:");
+                    newTest = new Test(null, "Exception:", this);
                     newTest.NodeFont = new Font(SystemFonts.DefaultFont, FontStyle.Bold);
                     newTest.ForeColor = Color.Orange;
                     newTest.ImageIndex = 2;
@@ -98,17 +114,19 @@ namespace TSLogParser
                     {
                         if (m.Groups[4].Value.Contains("Execute test") && logLines[1].Contains(">>>"))
                         {
-                            newTest = new Test(m.Groups[3].Value +" " + m.Groups[4].Value, this);
+                            newTest = new Test(m.Groups[3].Value, m.Groups[4].Value, this);
                             Nodes.Add(newTest);
                             steps.Add(newTest);
                             logLines.RemoveAt(0);
                             newTest.parse(logLines);
                         } else
                         {
-                            newTest = new Test(m.Groups[3].Value + " " + m.Groups[4].Value);
+                            newTest = new Test(m.Groups[3].Value, m.Groups[4].Value, this);
                             Nodes.Add(newTest);
                             steps.Add(newTest);
                         }
+                        
+                        
 
                         newTest.NodeFont = new Font(SystemFonts.DefaultFont, FontStyle.Bold);
                         switch (m.Groups[2].Value)
@@ -136,7 +154,7 @@ namespace TSLogParser
                     } else
                     {
                         Nodes.Add(line);
-                        steps.Add(new Test(line));
+                        steps.Add(new Test(null, line, this));
                     }
                     
                     
